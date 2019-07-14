@@ -29,21 +29,21 @@ router.patch('/:id', auth, LeagueController.edit_league);
 // @route   DELETE /league
 // @desc    Delete league
 // @access  Private
-router.delete('/', auth, LeagueController.delete_league);
+router.delete('/:id', auth, LeagueController.delete_league);
 
-// @route   GET /league/image/:id
+// @route   GET /league/:id/image
 // @desc    Get league image
 // @access  Private
-router.get('/image/:id', LeagueController.get_image_league);
+router.get('/:id/image', LeagueController.get_image_league);
 
-// @route   POST /league/image
+// @route   POST /league/:id/image
 // @desc    Upload league image
 // @access  Private
-router.post('/image', auth, upload.single('avatar'), LeagueController.upload_image_league);
+router.post('/:id/image', auth, upload.single('league_image'), LeagueController.upload_image_league);
 
-// @route   DELETE /league/image
-// @desc    Delete image
+// @route   DELETE /league/:id/image
+// @desc    Delete image league
 // @access  Private
-router.delete('/image', auth, LeagueController.delete_image_league);
+router.delete('/:id/image', auth, LeagueController.delete_image_league);
 
 module.exports = router
