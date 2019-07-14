@@ -12,7 +12,11 @@ const leagueSchema = new mongoose.Schema({
     registrations: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team'
-    }]
+    }],
+    image: {
+        type: Buffer,
+        default: null
+    }
 },
 {
     timestamps: true
