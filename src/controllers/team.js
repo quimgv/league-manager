@@ -9,8 +9,8 @@ exports.create_team = async (req, res) => {
   const team = new Team({ ...req.body });
 
   try {
-    const team = await Team.find({ name: req.body.name })
-    if(team) {
+    const teamCheck = await Team.find({ name: req.body.name })
+    if(teamCheck.length > 1) {
         throw new Error('Este nombre ya está siendo utilizado por otro equipo, por favor escoge otro.');
     }
     await team.save();

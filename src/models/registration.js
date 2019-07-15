@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const registrationSchema = new mongoose.Schema({
     league: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'League'
+        ref: 'League',
+        required: true
     },
     team: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team'
+        ref: 'Team',
+        required: true
     }
 },
 {
