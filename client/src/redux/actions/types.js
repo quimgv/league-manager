@@ -19,3 +19,5 @@ export const HIDE_MODAL = 'HIDE_MODAL';
 // League
 export const GET_LEAGUES = 'GET_LEAGUES';
 export const GET_LEAGUES_FAILED = 'GET_LEAGUES_FAILED';
+export const GET_LEAGUE = 'GET_LEAGUE';
+export const GET_LEAGUE_FAILED = 'GET_LEAGUE_FAILED';

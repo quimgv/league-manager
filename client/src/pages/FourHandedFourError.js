@@ -13,7 +13,7 @@ const FourHandedFourError = () => {
             The page you are looking for was moved, removed, renamed or might
             never exist!
           </p>
-          <Link to="/app">Back to Home Page</Link>
+          <Link to="/ligas">Back to Home Page</Link>
         </Grid.Column>
       </Grid.Row>
     </Grid>

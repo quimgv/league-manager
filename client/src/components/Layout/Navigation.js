@@ -34,7 +34,7 @@ const Navigation = ({
     );
     return (
       <Menu size="large">
-        <Menu.Item header name="Boil" onClick={() => history.push("/app")} />
+        <Menu.Item header name="Boil" onClick={() => history.push("/ligas")} />
         <Menu.Menu position="right">
           {isAuthenticated ? (
             <Dropdown item trigger={trigger}>

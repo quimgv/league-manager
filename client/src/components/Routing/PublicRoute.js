@@ -26,7 +26,7 @@ const PublicRoute = ({
         if (isLoading) {
           return <Loader />;
         } else if (isAuthenticated && !isLoading) {
-          return <Redirect to="/app" />;
+          return <Redirect to="/ligas" />;
         } else {
           return <Component {...props} />;
         }
