@@ -6,7 +6,7 @@ const _ = require("lodash");
 const League = require("../models/league");
 
 exports.create_league = async (req, res) => {
-  const league = new League({ ...req.body });
+  const league = new League({ ...req.body, owner: req.user._id });
 
   try {
     await league.save();
@@ -27,6 +27,23 @@ exports.get_leagues = async (req, res) => {
   try {
     const leagues = await League.find(filters, null, { limit, skip });
     res.status(201).json(leagues);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err.message);
+  }
+};
+
+exports.get_my_leagues = async (req, res) => {
+  const userId = req.user._id;
+
+  console.log(userId, req.user);
+
+  try {
+    const leagues = await League.find({ owner: userId });
+    if (leagues.length === 0) {
+      throw new Error("Leagues not found");
+    }
+    res.json(leagues);
   } catch (err) {
     console.log(err);
     res.status(400).json(err.message);
@@ -113,17 +130,17 @@ exports.get_image_league = async (req, res) => {
     res.status(400).json({ error: error.message });
   };
 
-exports.delete_image_league = async (req,res) => {
-    try {
-        const league = await League.findById(req.params.id);
-        if (!league) {
-          return res.status(404).json("League not found");
-        }
-        league.image = null;
-        await league.save();
-        res.json(league);
-      } catch (err) {
-        console.log(err);
-        res.status(400).json(err.message);
-      }
+exports.delete_image_league = async (req, res) => {
+  try {
+    const league = await League.findById(req.params.id);
+    if (!league) {
+      return res.status(404).json("League not found");
+    }
+    league.image = null;
+    await league.save();
+    res.json(league);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err.message);
+  }
 };

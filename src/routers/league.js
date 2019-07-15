@@ -16,6 +16,11 @@ router.post('/', auth, LeagueController.create_league);
 // @access  Public
 router.get('/', LeagueController.get_leagues);
 
+// @route   GET /league/my-leagues
+// @desc    Get my leagues
+// @access  Private
+router.get('/my-leagues', auth, LeagueController.get_my_leagues);
+
 // @route   GET /league/:id
 // @desc    Get league by id
 // @access  Public
