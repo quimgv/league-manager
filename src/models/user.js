@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: Buffer,
         default: null
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 },
 {
