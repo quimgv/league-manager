@@ -1,43 +1,44 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const leagueSchema = new mongoose.Schema({
+const leagueSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true
     },
     sponsors: {
-        type: Array
+      type: Array
     },
-    registrations: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team'
-    }],
     image: {
-        type: Buffer,
-        default: null
-    },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
+      type: Buffer,
+      default: null
     }
-},
-{
+  },
+  {
     timestamps: true
+  }
+);
+
+leagueSchema.virtual("registrations", {
+  ref: "Registration",
+  localField: "_id",
+  foreignField: "league"
 });
+
+leagueSchema.set('toObject', { virtuals: true });
 
 // userSchema.methods is for an specific "user" methods
 leagueSchema.methods.toJSON = function() {
-    
-    const leagueImage = this;
-    const leagueImageObject = leagueImage.toObject();
+  const leagueImage = this;
+  const leagueImageObject = leagueImage.toObject();
 
-    // delete this data to not send it back as a response
-    delete leagueImageObject.image;   
+  // delete this data to not send it back as a response
+  delete leagueImageObject.image;
 
-    return leagueImageObject;
+  return leagueImageObject;
 };
 
-const League = mongoose.model('League', leagueSchema);
+const League = mongoose.model("League", leagueSchema);
 
 module.exports = League;

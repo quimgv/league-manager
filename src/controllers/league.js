@@ -36,10 +36,10 @@ exports.get_leagues = async (req, res) => {
 exports.get_my_leagues = async (req, res) => {
   const userId = req.user._id;
 
-  console.log(userId, req.user);
+  let filters = {};
 
   try {
-    const leagues = await League.find({ owner: userId });
+    let leagues = await League.find({}).populate("registrations");
     if (leagues.length === 0) {
       throw new Error("Leagues not found");
     }
@@ -52,7 +52,10 @@ exports.get_my_leagues = async (req, res) => {
 
 exports.get_league = async (req, res) => {
   try {
-    const league = await League.findById(req.params.id);
+    const league = await League.findById(req.params.id).populate({
+      path: "registrations",
+      populate: "team"
+    });
     if (!league) {
       return res.status(404).json("League not found");
     }
