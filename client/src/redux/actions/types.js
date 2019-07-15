@@ -15,3 +15,7 @@ export const LOGOUT = 'LOGOUT';
 // Modal
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
+
+// League
+export const GET_LEAGUES = 'GET_LEAGUES';
+export const GET_LEAGUES_FAILED = 'GET_LEAGUES_FAILED';
