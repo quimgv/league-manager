@@ -6,7 +6,7 @@ import PrivateRoute from '../components/Routing/PrivateRoute';
 import PublicRoute from '../components/Routing/PublicRoute';
 
 // Pages
-import Dashboard from "../pages/Dashboard";
+import LeaguesPage from "../pages/LeaguesPage";
 import Home from "../pages/Home";
 import FourHandedFourError from '../pages/FourHandedFourError';
 import Profile from '../pages/Profile';
@@ -36,9 +36,9 @@ const AppRouter = () => {
     <Provider store={store}>
       <Switch>
         <PublicRoute path="/" exact component={Home} />
-        <PrivateRoute path="/app" exact component={Dashboard} />
-        <PrivateRoute path="/profile" exact component={Profile} />
-        <PrivateRoute path="/edit-profile" exact component={ProfileSettings} />
+        <PrivateRoute path="/ligas" exact component={LeaguesPage} />
+        <PrivateRoute path="/perfil" exact component={Profile} />
+        <PrivateRoute path="/editar-perfil" exact component={ProfileSettings} />
         <Route path="*" component={FourHandedFourError} />
       </Switch>
     </Provider>
