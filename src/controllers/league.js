@@ -54,8 +54,6 @@ exports.get_league = async (req, res) => {
 
   const matchCategories = req.query.category ? { _id: { $in: req.query.category.split(",") } } : null;
 
-  console.log(matchCategories)
-
   try {
     const league = await League.findById(req.params.id)
       .populate({
