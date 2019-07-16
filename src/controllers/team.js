@@ -9,9 +9,11 @@ exports.create_team = async (req, res) => {
   const team = new Team({ ...req.body });
 
   try {
-    const teamCheck = await Team.find({ name: req.body.name })
-    if(teamCheck.length > 1) {
-        throw new Error('Este nombre ya está siendo utilizado por otro equipo, por favor escoge otro.');
+    const teamCheck = await Team.find({ name: req.body.name });
+    if (teamCheck.length > 1) {
+      throw new Error(
+        "Este nombre ya está siendo utilizado por otro equipo, por favor escoge otro."
+      );
     }
     await team.save();
 
@@ -39,7 +41,7 @@ exports.get_teams = async (req, res) => {
 
 exports.get_team = async (req, res) => {
   try {
-    const team = await Team.findById(req.params.id);
+    const team = await Team.findById(req.params.id).populate("players");
     if (!team) {
       return res.status(404).json("Team not found");
     }
@@ -60,11 +62,9 @@ exports.edit_team = async (req, res) => {
       res.status(404).json("Team not found");
     }
     updates = _.merge(team, updates);
-    const teamUpdate = await Team.findByIdAndUpdate(
-      req.params.id,
-      updates,
-      { new: true }
-    );
+    const teamUpdate = await Team.findByIdAndUpdate(req.params.id, updates, {
+      new: true
+    });
     res.json(teamUpdate);
   } catch (err) {
     console.log(err);
@@ -86,7 +86,7 @@ exports.get_image_team = async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);
     if (!team || !team.image) {
-      throw new Error('Team or image team not found');
+      throw new Error("Team or image team not found");
     }
     res.set("Content-Type", "image/png");
     res.send(team.image);
@@ -117,17 +117,17 @@ exports.get_image_team = async (req, res) => {
     res.status(400).json({ error: error.message });
   };
 
-exports.delete_image_team = async (req,res) => {
-    try {
-        const team = await Team.findById(req.params.id);
-        if (!team) {
-          return res.status(404).json("Team not found");
-        }
-        team.image = null;
-        await team.save();
-        res.json(team);
-      } catch (err) {
-        console.log(err);
-        res.status(400).json(err.message);
-      }
+exports.delete_image_team = async (req, res) => {
+  try {
+    const team = await Team.findById(req.params.id);
+    if (!team) {
+      return res.status(404).json("Team not found");
+    }
+    team.image = null;
+    await team.save();
+    res.json(team);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err.message);
+  }
 };

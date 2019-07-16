@@ -23,3 +23,11 @@ export const GET_LEAGUES_FAILED = 'GET_LEAGUES_FAILED';
 export const GET_LEAGUE = 'GET_LEAGUE';
 export const GET_LEAGUE_FAILED = 'GET_LEAGUE_FAILED';
 export const UNMOUNT_LEAGUE = 'UNMOUNT_LEAGUE';
+
+// Team
+export const START_LOADING_TEAM = 'START_LOADING_TEAM';
+export const GET_TEAMS = 'GET_TEAMS';
+export const GET_TEAMS_FAILED = 'GET_TEAMS_FAILED';
+export const GET_TEAM = 'GET_TEAM';
+export const GET_TEAM_FAILED = 'GET_TEAM_FAILED';
+export const UNMOUNT_TEAM = 'UNMOUNT_TEAM';

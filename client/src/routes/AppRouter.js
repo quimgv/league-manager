@@ -9,6 +9,7 @@ import PublicRoute from '../components/Routing/PublicRoute';
 import Home from "../pages/Home";
 import LeaguesPage from "../pages/LeaguesPage";
 import LeaguePage from "../pages/LeaguePage";
+import TeamPage from "../pages/TeamPage";
 import FourHandedFourError from '../pages/FourHandedFourError';
 import Profile from '../pages/Profile';
 import ProfileSettings from '../pages/ProfileSettings';
@@ -39,6 +40,7 @@ const AppRouter = () => {
         <PublicRoute path="/" exact component={Home} />
         <PrivateRoute path="/ligas" exact component={LeaguesPage} />
         <PrivateRoute path="/liga/:id" exact component={LeaguePage} />
+        <PrivateRoute path="/equipo/:id" exact component={TeamPage} />
         <PrivateRoute path="/perfil" exact component={Profile} />
         <PrivateRoute path="/editar-perfil" exact component={ProfileSettings} />
         <Route path="*" component={FourHandedFourError} />

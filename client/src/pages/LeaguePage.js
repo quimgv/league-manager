@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {
   Card,
   Container,
@@ -56,7 +56,7 @@ const LeaguePage = ({ getLeague, isLoading, league, match, unmountLeague }) => {
                   render: () => (
                     <Tab.Pane attached={false}>
                       {league.registrations.map(registration => (
-                        <div key={registration._id}>{registration.team.name}</div>
+                        <div key={registration._id}><Link to={`/equipo/${registration.team._id}`}>{registration.team.name}</Link></div>
                       ))}
                     </Tab.Pane>
                   )
