@@ -5,6 +5,8 @@ const userRouter = require("./routers/user");
 const leagueRouter = require("./routers/league");
 const teamRouter = require("./routers/team");
 const registrationRouter = require("./routers/registration");
+const zoneRouter = require("./routers/zone");
+const categoryRouter = require("./routers/category");
 
 const app = express();
 
@@ -16,5 +18,7 @@ app.use("/users", userRouter);
 app.use("/league", leagueRouter);
 app.use("/team", teamRouter);
 app.use("/registration", registrationRouter);
+app.use("/zone", zoneRouter);
+app.use("/category", categoryRouter);
 
 module.exports = app;

@@ -52,10 +52,15 @@ exports.get_my_leagues = async (req, res) => {
 
 exports.get_league = async (req, res) => {
   try {
-    const league = await League.findById(req.params.id).populate({
-      path: "registrations",
-      populate: "team"
-    });
+    const league = await League.findById(req.params.id)
+      .populate({
+        path: "registrations",
+        select: "_id team",
+        populate: { path: "team", select: "_id name image" }
+      })
+      .populate({ path: "zones", select: "_id name" })
+      .populate({ path: 'categories', select: '_id zone name league', populate: 'zone' });
+    // .populate({ path: "zones.categories", select: "_id name" });
     if (!league) {
       return res.status(404).json("League not found");
     }
