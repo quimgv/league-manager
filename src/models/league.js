@@ -26,7 +26,7 @@ leagueSchema.virtual("registrations", {
   foreignField: "league"
 });
 
-leagueSchema.set('toObject', { virtuals: true });
+leagueSchema.set("toObject", { virtuals: true });
 
 // userSchema.methods is for an specific "user" methods
 leagueSchema.methods.toJSON = function() {
@@ -34,7 +34,9 @@ leagueSchema.methods.toJSON = function() {
   const leagueImageObject = leagueImage.toObject();
 
   // delete this data to not send it back as a response
-  delete leagueImageObject.image;
+  if (leagueImageObject.image !== null) {
+    leagueImageObject.image = true;
+  }
 
   return leagueImageObject;
 };

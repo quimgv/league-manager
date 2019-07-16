@@ -1,10 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button, Container, Icon, Item } from "semantic-ui-react";
 
 // Redux
 import { connect } from "react-redux";
 import { getLeagues } from "../redux/actions/league";
+
+import defaultImage from "../assets/img/user/undefined.gif";
 
 const LeaguesPage = ({ getLeagues, history, leagues }) => {
   useEffect(() => {
@@ -12,17 +14,41 @@ const LeaguesPage = ({ getLeagues, history, leagues }) => {
   }, [getLeagues]);
   return (
     <Fragment>
-      <h1>Ligas</h1>
-      {leagues.map(league => {
-        return (
-          <div key={league._id}>
-            <div>{league.name}</div>
-            <Button onClick={() => history.push(`/liga/${league._id}`)}>
-              Go
-            </Button>
-          </div>
-        );
-      })}
+      <Container>
+        <h1>Ligas</h1>
+        <Item.Group divided unstackable>
+          {leagues.map(league => {
+            return (
+              <Item key={league._id}>
+                <Item.Image
+                  src={
+                    league.image ? `/league/${league._id}/image` : defaultImage
+                  }
+                  size="tiny"
+                />
+
+                <Item.Content>
+                  <Item.Header>{league.name}</Item.Header>
+                  <Item.Meta>
+                    <span className="cinema">IFC</span>
+                  </Item.Meta>
+                  <Item.Description>asdsdfsfsgsgfgdgdf gdfgdfgdgdsgdsgfsdghsdgfd gdhfghdfhfghdfg dhdhdhdfghd fhdfghgfhdfg hdshdshgdfdfds</Item.Description>
+                  <Item.Extra>
+                    <Button
+                      primary
+                      floated="right"
+                      onClick={() => history.push(`/liga/${league._id}`)}
+                    >
+                      Ver liga
+                      <Icon name="right chevron" />
+                    </Button>
+                  </Item.Extra>
+                </Item.Content>
+              </Item>
+            );
+          })}
+        </Item.Group>
+      </Container>
     </Fragment>
   );
 };
