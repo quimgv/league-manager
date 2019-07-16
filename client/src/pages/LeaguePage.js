@@ -3,8 +3,8 @@ import { withRouter, Link } from "react-router-dom";
 import { Dropdown, Grid, Image, Loader, Segment, Tab } from "semantic-ui-react";
 
 // Components
-import LeagueImage from '../components/LeaguePage/LeagueImage';
-import LeagueDetails from '../components/LeaguePage/LeagueDetails';
+import LeagueDetails from "../components/LeaguePage/LeagueDetails";
+import LeagueSponsors from "../components/LeaguePage/LeagueSponsors";
 
 // Redux
 import { connect } from "react-redux";
@@ -19,7 +19,7 @@ const LeaguePage = ({
   zones
 }) => {
   useEffect(() => {
-    getLeague(match.params.id, );
+    getLeague(match.params.id);
     return () => {
       unmountLeague();
     };
@@ -41,14 +41,10 @@ const LeaguePage = ({
     });
     return (
       <Fragment>
-        <Grid columns="2" container>
-          <Grid.Column mobile={16} tablet={4} computer={4}>
-            <LeagueImage league={league} />
-          </Grid.Column>
-          <Grid.Column mobile={16} tablet={12} computer={12}>
-            <LeagueDetails league={league} />
-          </Grid.Column>
-        </Grid>
+        <LeagueDetails league={league} />
+
+        <LeagueSponsors league={league} />
+
         <Grid columns="1" container>
           <Grid.Column>
             <Tab
