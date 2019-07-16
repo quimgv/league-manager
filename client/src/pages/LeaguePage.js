@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { Grid, Image, Loader, Segment, Tab } from "semantic-ui-react";
+import { Dropdown, Grid, Image, Loader, Segment, Tab } from "semantic-ui-react";
 
-import defaultImage from "../assets/img/user/undefined.gif";
+// Components
+import LeagueImage from '../components/LeaguePage/LeagueImage';
 
 // Redux
 import { connect } from "react-redux";
@@ -17,7 +18,7 @@ const LeaguePage = ({
   zones
 }) => {
   useEffect(() => {
-    getLeague(match.params.id);
+    getLeague(match.params.id, );
     return () => {
       unmountLeague();
     };
@@ -28,16 +29,20 @@ const LeaguePage = ({
   } else if (league === null) {
     return <div />;
   } else {
-    const { _id, name } = league;
+    const { _id, name, categories } = league;
+    let categoriesDropDown = [];
+    categories.forEach(category => {
+      categoriesDropDown.push({
+        key: category._id,
+        text: category.name,
+        value: category.name
+      });
+    });
     return (
       <Fragment>
         <Grid columns="2" container>
           <Grid.Column mobile={16} tablet={4} computer={4}>
-            <Image
-              src={league.image ? `/league/${_id}/image` : defaultImage}
-              size="small"
-              centered
-            />
+            <LeagueImage league={league} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={12} computer={12}>
             <Segment>
@@ -51,21 +56,31 @@ const LeaguePage = ({
               menu={{ pointing: true }}
               panes={[
                 {
-                  menuItem: "Inscripciones",
+                  menuItem: "Equipos",
                   render: () => (
                     <Tab.Pane attached={false}>
-                      {league.registrations.map(registration => (
-                        <div key={registration._id}>
-                          <Link to={`/equipo/${registration.team._id}`}>
-                            {registration.team.name}
-                          </Link>
-                        </div>
-                      ))}
+                      <Fragment>
+                        Filtrar:{" "}
+                        <Dropdown
+                          placeholder="Categorias"
+                          multiple
+                          selection
+                          options={categoriesDropDown}
+                          onChange={(e, { value }) => console.log(value)}
+                        />
+                        {league.registrations.map(registration => (
+                          <div key={registration._id}>
+                            <Link to={`/equipo/${registration.team._id}`}>
+                              {registration.team.name}
+                            </Link>
+                          </div>
+                        ))}
+                      </Fragment>
                     </Tab.Pane>
                   )
                 },
                 {
-                  menuItem: "Zonas",
+                  menuItem: "Calendario",
                   render: () => (
                     <Tab.Pane attached={false}>
                       {league.zones.map(zone => (

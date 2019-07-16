@@ -51,6 +51,11 @@ exports.get_my_leagues = async (req, res) => {
 };
 
 exports.get_league = async (req, res) => {
+
+  const matchCategories = req.query.category ? { _id: { $in: req.query.category.split(",") } } : null;
+
+  console.log(matchCategories)
+
   try {
     const league = await League.findById(req.params.id)
       .populate({
@@ -59,7 +64,11 @@ exports.get_league = async (req, res) => {
         populate: { path: "team", select: "_id name image" }
       })
       .populate({ path: "zones", select: "_id name" })
-      .populate({ path: 'categories', select: '_id name'});
+      .populate({
+        path: "categories",
+        match: matchCategories,
+        select: "_id name"
+      });
     if (!league) {
       return res.status(404).json("League not found");
     }
