@@ -4,6 +4,7 @@ import { Dropdown, Grid, Image, Loader, Segment, Tab } from "semantic-ui-react";
 
 // Components
 import LeagueImage from '../components/LeaguePage/LeagueImage';
+import LeagueDetails from '../components/LeaguePage/LeagueDetails';
 
 // Redux
 import { connect } from "react-redux";
@@ -45,9 +46,7 @@ const LeaguePage = ({
             <LeagueImage league={league} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={12} computer={12}>
-            <Segment>
-              <h1>{name}</h1>
-            </Segment>
+            <LeagueDetails league={league} />
           </Grid.Column>
         </Grid>
         <Grid columns="1" container>
