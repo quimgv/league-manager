@@ -26,6 +26,18 @@ leagueSchema.virtual("registrations", {
   foreignField: "league"
 });
 
+leagueSchema.virtual("zones", {
+  ref: "Zone",
+  localField: "_id",
+  foreignField: "league"
+});
+
+leagueSchema.virtual("categories", {
+  ref: "Category",
+  localField: "_id",
+  foreignField: "league"
+});
+
 leagueSchema.set("toObject", { virtuals: true });
 
 // userSchema.methods is for an specific "user" methods
