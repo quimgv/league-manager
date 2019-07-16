@@ -5,7 +5,7 @@ import { Loader } from "semantic-ui-react";
 // Components
 import LeagueDetails from "../components/LeaguePage/LeagueDetails";
 import LeagueSponsors from "../components/LeaguePage/LeagueSponsors";
-import LeagueMain from "../components/LeaguePage/LeagueMain/.LeagueMain";
+import LeagueMain from "../components/LeaguePage/LeagueMain/LeagueMain";
 
 // Redux
 import { connect } from "react-redux";
