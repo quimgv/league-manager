@@ -51,8 +51,8 @@ const userSchema = new mongoose.Schema({
         default: null
     },
     role: {
-        type: String, // admin
-        default: false
+        type: Array, // admin
+        default: []
     }
 },
 {
