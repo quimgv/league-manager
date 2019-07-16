@@ -1,12 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
-import {
-  Grid,
-  Image,
-  Loader,
-  Segment,
-  Tab
-} from "semantic-ui-react";
+import { Grid, Image, Loader, Segment, Tab } from "semantic-ui-react";
 
 import defaultImage from "../assets/img/user/undefined.gif";
 
@@ -14,7 +8,14 @@ import defaultImage from "../assets/img/user/undefined.gif";
 import { connect } from "react-redux";
 import { getLeague, unmountLeague } from "../redux/actions/league";
 
-const LeaguePage = ({ getLeague, isLoading, league, match, unmountLeague }) => {
+const LeaguePage = ({
+  getLeague,
+  isLoading,
+  league,
+  match,
+  unmountLeague,
+  zones
+}) => {
   useEffect(() => {
     getLeague(match.params.id);
     return () => {
@@ -54,14 +55,34 @@ const LeaguePage = ({ getLeague, isLoading, league, match, unmountLeague }) => {
                   render: () => (
                     <Tab.Pane attached={false}>
                       {league.registrations.map(registration => (
-                        <div key={registration._id}><Link to={`/equipo/${registration.team._id}`}>{registration.team.name}</Link></div>
+                        <div key={registration._id}>
+                          <Link to={`/equipo/${registration.team._id}`}>
+                            {registration.team.name}
+                          </Link>
+                        </div>
                       ))}
                     </Tab.Pane>
                   )
                 },
                 {
-                  menuItem: "Horarios",
-                  render: () => <Tab.Pane attached={false}>Horarios</Tab.Pane>
+                  menuItem: "Zonas",
+                  render: () => (
+                    <Tab.Pane attached={false}>
+                      {league.zones.map(zone => (
+                        <div key={zone._id}>{zone.name}</div>
+                      ))}
+                    </Tab.Pane>
+                  )
+                },
+                {
+                  menuItem: "Categorias",
+                  render: () => (
+                    <Tab.Pane attached={false}>
+                      {league.categories.map(category => (
+                        <div key={category._id}>{category.name}</div>
+                      ))}
+                    </Tab.Pane>
+                  )
                 }
               ]}
             />

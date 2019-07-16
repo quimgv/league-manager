@@ -59,8 +59,7 @@ exports.get_league = async (req, res) => {
         populate: { path: "team", select: "_id name image" }
       })
       .populate({ path: "zones", select: "_id name" })
-      .populate({ path: 'categories', select: '_id zone name league', populate: 'zone' });
-    // .populate({ path: "zones.categories", select: "_id name" });
+      .populate({ path: 'categories', select: '_id name'});
     if (!league) {
       return res.status(404).json("League not found");
     }
