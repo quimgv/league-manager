@@ -1,10 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { withRouter, Link } from "react-router-dom";
-import { Dropdown, Grid, Image, Loader, Segment, Tab } from "semantic-ui-react";
+import React, { Fragment, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import { Loader } from "semantic-ui-react";
 
 // Components
 import LeagueDetails from "../components/LeaguePage/LeagueDetails";
 import LeagueSponsors from "../components/LeaguePage/LeagueSponsors";
+import LeagueMain from "../components/LeaguePage/LeagueMain/.LeagueMain";
 
 // Redux
 import { connect } from "react-redux";
@@ -30,74 +31,11 @@ const LeaguePage = ({
   } else if (league === null) {
     return <div />;
   } else {
-    const { _id, name, categories } = league;
-    let categoriesDropDown = [];
-    categories.forEach(category => {
-      categoriesDropDown.push({
-        key: category._id,
-        text: category.name,
-        value: category.name
-      });
-    });
     return (
       <Fragment>
         <LeagueDetails league={league} />
-
         <LeagueSponsors league={league} />
-
-        <Grid columns="1" container>
-          <Grid.Column>
-            <Tab
-              menu={{ pointing: true }}
-              panes={[
-                {
-                  menuItem: "Equipos",
-                  render: () => (
-                    <Tab.Pane attached={false}>
-                      <Fragment>
-                        Filtrar:{" "}
-                        <Dropdown
-                          placeholder="Categorias"
-                          multiple
-                          selection
-                          options={categoriesDropDown}
-                          onChange={(e, { value }) => console.log(value)}
-                        />
-                        {league.registrations.map(registration => (
-                          <div key={registration._id}>
-                            <Link to={`/equipo/${registration.team._id}`}>
-                              {registration.team.name}
-                            </Link>
-                          </div>
-                        ))}
-                      </Fragment>
-                    </Tab.Pane>
-                  )
-                },
-                {
-                  menuItem: "Calendario",
-                  render: () => (
-                    <Tab.Pane attached={false}>
-                      {league.zones.map(zone => (
-                        <div key={zone._id}>{zone.name}</div>
-                      ))}
-                    </Tab.Pane>
-                  )
-                },
-                {
-                  menuItem: "Categorias",
-                  render: () => (
-                    <Tab.Pane attached={false}>
-                      {league.categories.map(category => (
-                        <div key={category._id}>{category.name}</div>
-                      ))}
-                    </Tab.Pane>
-                  )
-                }
-              ]}
-            />
-          </Grid.Column>
-        </Grid>
+        <LeagueMain league={league} />
       </Fragment>
     );
   }
