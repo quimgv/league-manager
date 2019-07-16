@@ -50,8 +50,8 @@ const userSchema = new mongoose.Schema({
         type: Buffer,
         default: null
     },
-    admin: {
-        type: Boolean,
+    role: {
+        type: String, // admin
         default: false
     }
 },

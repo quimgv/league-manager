@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import {
-  Card,
-  Container,
   Grid,
   Image,
   Loader,

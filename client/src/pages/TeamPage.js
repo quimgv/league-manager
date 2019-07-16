@@ -1,13 +1,10 @@
 import React, { Fragment, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import {
-  Card,
-  Container,
   Grid,
   Image,
   Loader,
-  Segment,
-  Tab
+  Segment
 } from "semantic-ui-react";
 
 import defaultImage from "../assets/img/user/undefined.gif";

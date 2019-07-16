@@ -39,10 +39,10 @@ const Navigation = ({
           {isAuthenticated ? (
             <Dropdown item trigger={trigger}>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => history.push("/profile")}>
+                <Dropdown.Item onClick={() => history.push("/perfil")}>
                   Profile
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => history.push("/edit-profile")}>Settings</Dropdown.Item>
+                <Dropdown.Item onClick={() => history.push("/editar-perfil")}>Settings</Dropdown.Item>
                 <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

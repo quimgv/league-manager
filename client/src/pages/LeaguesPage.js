@@ -30,9 +30,9 @@ const LeaguesPage = ({ getLeagues, history, leagues }) => {
                 <Item.Content>
                   <Item.Header>{league.name}</Item.Header>
                   <Item.Meta>
-                    <span className="cinema">IFC</span>
+                    <span className="cinema">Temporada 2018 - 2019</span>
                   </Item.Meta>
-                  <Item.Description>asdsdfsfsgsgfgdgdf gdfgdfgdgdsgdsgfsdghsdgfd gdhfghdfhfghdfg dhdhdhdfghd fhdfghgfhdfg hdshdshgdfdfds</Item.Description>
+                  <Item.Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut tempus ex. Phasellus vulputate vitae ex ut vulputate. Donec in vulputate enim.</Item.Description>
                   <Item.Extra>
                     <Button
                       primary
