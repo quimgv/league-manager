@@ -33,7 +33,7 @@ const LeaguePage = ({
   } else {
     return (
       <Fragment>
-        <LeagueDetails league={league} />
+        <LeagueDetails />
         <LeagueSponsors league={league} />
         <LeagueMain league={league} />
       </Fragment>

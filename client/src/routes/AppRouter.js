@@ -4,11 +4,13 @@ import { Route, Switch } from "react-router-dom";
 // Routes type
 import PrivateRoute from '../components/Routing/PrivateRoute';
 import PublicRoute from '../components/Routing/PublicRoute';
+import AdminRoute from '../components/Routing/AdminRoute';
 
 // Pages
 import Home from "../pages/Home";
 import LeaguesPage from "../pages/LeaguesPage";
 import LeaguePage from "../pages/LeaguePage";
+import LeaguePageAdmin from "../pages/LeaguePageAdmin";
 import TeamPage from "../pages/TeamPage";
 import FourHandedFourError from '../pages/FourHandedFourError';
 import Profile from '../pages/Profile';
@@ -40,6 +42,7 @@ const AppRouter = () => {
         <PublicRoute path="/" exact component={Home} />
         <PrivateRoute path="/ligas" exact component={LeaguesPage} />
         <PrivateRoute path="/liga/:id" exact component={LeaguePage} />
+        <AdminRoute path="/liga/:id/editar" component={LeaguePageAdmin} />
         <PrivateRoute path="/equipo/:id" exact component={TeamPage} />
         <PrivateRoute path="/perfil" exact component={Profile} />
         <PrivateRoute path="/editar-perfil" exact component={ProfileSettings} />
