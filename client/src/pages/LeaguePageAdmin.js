@@ -11,17 +11,38 @@ import LeaguePhases from "../components/Admin/LeaguePhases";
 
 // Redux
 import { connect } from "react-redux";
-import { getDetails, unmountAdmin } from '../redux/actions/admin';
+import {
+  getCategories,
+  getDetails,
+  getPhases,
+  getZones,
+  unmountAdmin
+} from "../redux/actions/admin";
 
-const LeaguePageEdit = ({ admin: { details, zones, categories, phases }, getDetails, location, match, unmountAdmin }) => {
+const LeaguePageEdit = ({
+  admin: { details, zones, categories, phases },
+  getCategories,
+  getDetails,
+  getPhases,
+  getZones,
+  location,
+  match,
+  unmountAdmin
+}) => {
+  const leagueId = match.params.id;
   useEffect(() => {
-    getDetails(match.params.id);
+    async function fetchAdminData() {
+      await getDetails(leagueId);
+      await getZones(leagueId);
+      await getCategories(leagueId);
+      await getPhases();
+    }
+    fetchAdminData();
+
     return () => {
       unmountAdmin();
     };
   }, []);
-
-  console.log(details, zones, categories, phases);
 
   const sectionPath = /([^/]+)\/?$/g;
 
@@ -59,6 +80,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getDetails, unmountAdmin }
+    { getCategories, getDetails, getPhases, getZones, unmountAdmin }
   )(LeaguePageEdit)
 );

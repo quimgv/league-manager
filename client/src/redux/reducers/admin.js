@@ -1,4 +1,14 @@
-import { GET_DETAILS, UNMOUNT_ADMIN } from "../actions/types";
+import {
+  GET_CATEGORIES,
+  GET_CATEGORIES_FAILED,
+  GET_DETAILS,
+  GET_DETAILS_FAILED,
+  GET_PHASES,
+  GET_PHASES_FAILED,
+  GET_ZONES,
+  GET_ZONES_FAILED,
+  UNMOUNT_ADMIN
+} from "../actions/types";
 
 const inistialState = {
   details: null,
@@ -15,6 +25,41 @@ export default function(state = inistialState, action) {
       return {
         ...state,
         details: payload
+      };
+    case GET_DETAILS_FAILED:
+      return {
+        ...state,
+        details: null
+      };
+    case GET_ZONES:
+      return {
+        ...state,
+        zones: payload
+      };
+    case GET_ZONES_FAILED:
+      return {
+        ...state,
+        zones: null
+      };
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: payload
+      };
+    case GET_CATEGORIES_FAILED:
+      return {
+        ...state,
+        categories: null
+      };
+    case GET_PHASES:
+      return {
+        ...state,
+        phases: payload
+      };
+    case GET_PHASES_FAILED:
+      return {
+        ...state,
+        phases: null
       };
     case UNMOUNT_ADMIN:
       return inistialState;

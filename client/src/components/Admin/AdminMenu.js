@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import {
   Dropdown,
@@ -8,13 +8,9 @@ import {
 } from "semantic-ui-react";
 import { isMobile } from "react-device-detect";
 
-const AdminMenu = ({ children, history, match }) => {
-  const [sidebar, setSidebar] = useState({
-    animation: "scale down",
-    direction: "left",
-    dimmed: false,
-    visible: true
-  });
+import { connect } from 'react-redux';
+
+const AdminMenu = ({ admin, history, match }) => {
 
   return (
     <Fragment>
@@ -43,6 +39,7 @@ const AdminMenu = ({ children, history, match }) => {
                   onClick={() =>
                     history.push(`/liga/${match.params.id}/editar/zonas`)
                   }
+                  disabled={admin.details.zonesBool}
                 />
                 <Dropdown.Item
                   icon="sort numeric down"
@@ -74,11 +71,13 @@ const AdminMenu = ({ children, history, match }) => {
               <Icon name="file alternate" />
               Detalles
             </Menu.Item>
+            {console.log('ZONES', admin.details.zonesBool)}
             <Menu.Item
               as="a"
               onClick={() =>
                 history.push(`/liga/${match.params.id}/editar/zonas`)
               }
+              disabled={!admin.details.zonesBool}
             >
               <Icon name="world" />
               Zonas
@@ -107,6 +106,12 @@ const AdminMenu = ({ children, history, match }) => {
     </Fragment>
   );
 };
+
+const mapStateToProps = state => ({
+  admin: state.admin
+});
+
+export default withRouter(connect(mapStateToProps)(AdminMenu));
 
 // const AdminSidebar = ({ children, history, match }) => {
 //   const [sidebar, setSidebar] = useState({
@@ -156,4 +161,4 @@ const AdminMenu = ({ children, history, match }) => {
 //   );
 // };
 
-export default withRouter(AdminMenu);
+

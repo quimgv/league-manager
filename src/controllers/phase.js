@@ -21,8 +21,8 @@ exports.create_phase = async (req, res) => {
 exports.get_phases = async (req, res) => {
   let filters = {};
 
-  if (req.query.league) {
-    filters = { league: req.query.league };
+  if (req.query.categories) {
+    filters = { categories: { $in: req.query.categories.split(',') } };
   }
 
   const limit = Number(req.query.limit);

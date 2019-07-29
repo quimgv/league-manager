@@ -37,10 +37,10 @@ export const getLeague = leagueId => async dispatch => {
 export const unmountLeague = () => ({ type: UNMOUNT_LEAGUE });
 
 export const updateLeagueDetails = (leagueId, updates) => async dispatch => {
-  console.log(updates)
+  console.log(updates);
 
-  if(updates.image) {
-    console.log('IMAGE')
+  if (updates.image) {
+    console.log("IMAGE");
   }
 
   // try {
