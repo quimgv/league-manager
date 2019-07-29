@@ -4,7 +4,8 @@ import {
   GET_LEAGUES_FAILED,
   GET_LEAGUE,
   GET_LEAGUE_FAILED,
-  UNMOUNT_LEAGUE
+  UNMOUNT_LEAGUE,
+  UPDATE_LEAGUE
 } from "../actions/types";
 
 const inistialState = {
@@ -28,6 +29,12 @@ export default function(state = inistialState, action) {
         isLoading: false
       };
     case GET_LEAGUE:
+      return {
+        ...state,
+        currentLeague: payload,
+        isLoading: false
+      };
+    case UPDATE_LEAGUE:
       return {
         ...state,
         currentLeague: payload,

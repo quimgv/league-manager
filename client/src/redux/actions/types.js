@@ -22,6 +22,7 @@ export const GET_LEAGUES = 'GET_LEAGUES';
 export const GET_LEAGUES_FAILED = 'GET_LEAGUES_FAILED';
 export const GET_LEAGUE = 'GET_LEAGUE';
 export const GET_LEAGUE_FAILED = 'GET_LEAGUE_FAILED';
+export const UPDATE_LEAGUE = 'UPDATE_LEAGUE';
 export const UNMOUNT_LEAGUE = 'UNMOUNT_LEAGUE';
 
 // Team
@@ -31,3 +32,8 @@ export const GET_TEAMS_FAILED = 'GET_TEAMS_FAILED';
 export const GET_TEAM = 'GET_TEAM';
 export const GET_TEAM_FAILED = 'GET_TEAM_FAILED';
 export const UNMOUNT_TEAM = 'UNMOUNT_TEAM';
+
+//Admin
+export const GET_DETAILS = 'GET_DETAILS';
+export const GET_DETAILS_FAILED = 'GET_DETAILS_FAILED';
+export const UNMOUNT_ADMIN = 'UNMOUNT_ADMIN';

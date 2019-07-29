@@ -13,6 +13,10 @@ const leagueSchema = new mongoose.Schema(
     image: {
       type: Buffer,
       default: null
+    },
+    zonesBool: {
+      type: Boolean,
+      default: false
     }
   },
   {

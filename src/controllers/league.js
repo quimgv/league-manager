@@ -51,8 +51,9 @@ exports.get_my_leagues = async (req, res) => {
 };
 
 exports.get_league = async (req, res) => {
-
-  const matchCategories = req.query.category ? { _id: { $in: req.query.category.split(",") } } : null;
+  const matchCategories = req.query.category
+    ? { _id: { $in: req.query.category.split(",") } }
+    : null;
 
   try {
     const league = await League.findById(req.params.id)
@@ -91,7 +92,10 @@ exports.edit_league = async (req, res) => {
       req.params.id,
       updates,
       { new: true }
-    );
+    ).populate({
+      path: "categories",
+      select: "_id name"
+    });
     res.json(leagueUpdate);
   } catch (err) {
     console.log(err);
