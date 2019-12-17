@@ -63,8 +63,11 @@ export const register = (
 
 // Login user
 export const login = (email, password) => async dispatch => {
+  console.log('RES')
   try {
     const res = await axios.post("/users/login", { email, password });
+
+    console.log('RES', res)
 
     dispatch({
       type: LOGIN_SUCCESS,

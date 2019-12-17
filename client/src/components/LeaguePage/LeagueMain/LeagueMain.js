@@ -1,12 +1,14 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { Dropdown, Grid, Tab } from "semantic-ui-react";
+import React from "react";
+// import React, { Fragment } from "react";
+// import { Link } from "react-router-dom";
+import { Grid, Tab } from "semantic-ui-react";
+// import { Dropdown, Grid, Tab } from "semantic-ui-react";
 
 // Components
 import Calendar from './Calendar';
 
 const LeagueMain = ({ league }) => {
-  const { categories } = league;
+  // const { categories } = league;
   return (
     <Grid columns="1" container>
       <Grid.Column>

@@ -71,7 +71,6 @@ const AdminMenu = ({ admin, history, match }) => {
               <Icon name="file alternate" />
               Detalles
             </Menu.Item>
-            {console.log('ZONES', admin.details.zonesBool)}
             <Menu.Item
               as="a"
               onClick={() =>

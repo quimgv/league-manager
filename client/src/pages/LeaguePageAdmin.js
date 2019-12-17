@@ -1,23 +1,24 @@
-import React, { Fragment, useEffect } from "react";
-import { withRouter } from "react-router-dom";
-import { Grid } from "semantic-ui-react";
+import React, { Fragment, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+import { Grid } from 'semantic-ui-react';
 
 // Components
-import AdminMenu from "../components/Admin/AdminMenu";
-import LeagueDetails from "../components/Admin/LeagueDetails";
-import LeagueZones from "../components/Admin/LeagueZones";
-import LeagueCategories from "../components/Admin/LeagueCategories";
-import LeaguePhases from "../components/Admin/LeaguePhases";
+import AdminMenu from '../components/Admin/AdminMenu';
+import LeagueDetails from '../components/Admin/LeagueDetails';
+import LeagueZones from '../components/Admin/LeagueZones';
+import LeagueCategories from '../components/Admin/LeagueCategories';
+import LeaguePhases from '../components/Admin/LeaguePhases';
 
 // Redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import {
-  getCategories,
   getDetails,
   getPhases,
   getZones,
   unmountAdmin
-} from "../redux/actions/admin";
+} from '../redux/actions/admin';
+
+import { getCategories } from '../redux/actions/category';
 
 const LeaguePageEdit = ({
   admin: { details, zones, categories, phases },
@@ -54,16 +55,16 @@ const LeaguePageEdit = ({
         <Grid columns="equal">
           <AdminMenu />
           <Grid.Column>
-            {location.pathname.match(sectionPath)[0] === "editar" && (
+            {location.pathname.match(sectionPath)[0] === 'editar' && (
               <LeagueDetails />
             )}
-            {location.pathname.match(sectionPath)[0] === "zonas" && (
+            {location.pathname.match(sectionPath)[0] === 'zonas' && (
               <LeagueZones />
             )}
-            {location.pathname.match(sectionPath)[0] === "categorias" && (
+            {location.pathname.match(sectionPath)[0] === 'categorias' && (
               <LeagueCategories />
             )}
-            {location.pathname.match(sectionPath)[0] === "fases" && (
+            {location.pathname.match(sectionPath)[0] === 'fases' && (
               <LeaguePhases />
             )}
           </Grid.Column>

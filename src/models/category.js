@@ -6,6 +6,10 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    gender: {
+      type: String, // Sin género, Masculino, Femenino, Mixto
+      required: true
+    },
     league: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "League",

@@ -7,7 +7,7 @@ import { login } from '../redux/actions/auth';
 import { handleModal } from '../redux/actions/modal';
 
 const LoginForm = ({ handleModal, login }) => {
-  const [ formData, setFormData ] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const { email, password } = formData;
 
@@ -17,6 +17,8 @@ const LoginForm = ({ handleModal, login }) => {
 
   const onSubmit = e => {
     e.preventDefault();
+
+    console.log('login', email, password)
 
     // const { errors } = loginValidation(email, password);
 

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 
 // Redux
@@ -60,11 +60,11 @@ const CalendarFilters = ({ league }) => {
         key: 'fase1',
         text: 'Fase 1',
         value: 'fase1'
-      },{
+      }, {
         key: 'fase2',
         text: 'Fase 2',
         value: 'fase2'
-      } ],
+      }],
       onChange: "phases"
     };
   }

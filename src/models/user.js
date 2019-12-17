@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
         validate(value) {
-            if(!validator.isEmail(value)) {
+            if (!validator.isEmail(value)) {
                 throw new Error('Please provide a proper email')
             }
         }
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
         minlength: 2,
         trim: true,
         validate(value) {
-            if(value.includes('password')) {
+            if (value.includes('password')) {
                 throw new Error('The password cannot include the word "Password"')
             }
         }
@@ -55,48 +55,50 @@ const userSchema = new mongoose.Schema({
         default: []
     }
 },
-{
-    timestamps: true
-});
+    {
+        timestamps: true
+    });
 
 // userSchema.methods is for an specific "user" methods
-userSchema.methods.toJSON = function() {
+userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject(); // toObject() method is provided by mongoose
 
     // delete this data to not send it back as a response
     delete userObject.password;
     delete userObject.tokens;
-    if(userObject.avatar !== null ){
+    if (userObject.avatar !== null) {
         userObject.avatar = true;
     }
-    
+
 
     return userObject;
 };
 
-userSchema.methods.generateAuthToken = async function() {
+userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = jwt.sign({_id: user._id.toString()}, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
 
-    user.tokens = user.tokens.concat({token});
+    user.tokens = user.tokens.concat({ token });
     await user.save();
 
     return token;
 }
 
 // userSchema.statics for "User" model methods
-userSchema.statics.findByCredentials = async (email,password) => {
+userSchema.statics.findByCredentials = async (email, password) => {
 
-    const user = await User.findOne({email});
+    console.log('CRED', email, password)
 
-    if(!user) {
+    const user = await User.findOne({ email });
+
+    if (!user) {
         throw new Error('Unable to login, please check your email and password and try again.');
     }
 
     const isMatch = await bcrypt.compare(password, user.password)
 
-    if(!isMatch) {
+    if (!isMatch) {
         throw new Error('Unable to login, please check your email and password and try again.');
     }
 

@@ -7,8 +7,9 @@ import {
   GET_PHASES_FAILED,
   GET_ZONES,
   GET_ZONES_FAILED,
+  CREATE_CATEGORY,
   UNMOUNT_ADMIN
-} from "../actions/types";
+} from '../actions/types';
 
 const inistialState = {
   details: null,
@@ -60,6 +61,11 @@ export default function(state = inistialState, action) {
       return {
         ...state,
         phases: null
+      };
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        categories: [...state.categories, payload]
       };
     case UNMOUNT_ADMIN:
       return inistialState;

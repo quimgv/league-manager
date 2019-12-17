@@ -19,7 +19,7 @@ const TeamPage = ({ getTeam, isLoading, team, match, unmountTeam }) => {
     return () => {
       unmountTeam();
     };
-  }, []);
+  }, [match]);
 
   if (isLoading) {
     return <Loader active />;

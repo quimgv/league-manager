@@ -19,13 +19,13 @@ const PrivateRoute = ({
     <Fragment>
       <Navigation />
       <Container>
-      <Modal />
+        <Modal />
         <Route
           {...rest}
           render={props => {
             if (isLoading) {
               return <Loader />;
-            } else if (!isAuthenticated && !isLoading || !user.role.includes('admin') ) {
+            } else if ((!isAuthenticated && !isLoading) || !user.role.includes('admin')) {
               return <Redirect to="/" />;
             } else {
               return <Component {...props} />;
